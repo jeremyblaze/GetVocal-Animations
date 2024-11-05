@@ -69,11 +69,15 @@ function animateCallBubbles() {
 
 $(document).ready(function(){
 
-    nextScannerItem();
-    setInterval(function(){
+    if ( $('.animWrap1').length ) {
         nextScannerItem();
-    }, 2000);
+        setInterval(function(){
+            nextScannerItem();
+        }, 2000);
+    }
 
-    animateCallBubbles();
+    if ( $('.animWrap2').length ) {
+        animateCallBubbles();
+    }
 
 });
