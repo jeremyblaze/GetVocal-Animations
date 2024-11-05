@@ -9,7 +9,7 @@ body {
     background: #111;
     font-family: system-ui, arial, sans-serif;
     object-fit: contain;
-    /* max-width: 800px; */
+    max-width: 800px;
 }
 
 .animWrap {
@@ -23,6 +23,32 @@ body {
 
 .animWrap * {
     box-sizing: border-box;
+}
+
+.netmapWrap {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.netmap {
+	width: 100%;
+	height: auto;
+    aspect-ratio: 1/1;
+	overflow: hidden;
+}
+
+.netmap-position {
+	margin-left: 20%;
+}
+
+.netmap-resize {
+  transform: scale(0.5);
+	transform-origin: 0% 0%;
 }
 
 .scannerOverlay {
@@ -254,6 +280,8 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
+    position: relative;
+    z-index: 2;
 }
 
     .exampleChatWrap img {

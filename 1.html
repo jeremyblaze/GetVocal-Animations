@@ -2,12 +2,20 @@
 <head>
     <title>GetVocal</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <script type="text/javascript" src="jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     
     <div class="animWrap animWrap1">
+        <div class="netmapWrap">
+            <div class="netmap">
+                <div class="netmap-position">
+                    <div class="netmap-resize">
+                        <canvas id="c" width="600" height="600"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="scannerOverlay">
             <div class="scannerOverlayBorder">
                 <div class="scannerOverlayInner"></div>
@@ -58,6 +66,9 @@
             </div>
         </div>
     </div>
+    
+    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="netmap.js"></script>
 
 </body>
 </html>
