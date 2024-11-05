@@ -1,0 +1,264 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #1c1c1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    padding: 64px;
+    font-family: system-ui, sans-serif;
+}
+
+.animWrap {
+    width: 700px;
+    aspect-ratio: 1/1;
+    position: relative;
+    border: 1.5px solid #4e4e4e;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.animWrap * {
+    box-sizing: border-box;
+}
+
+.scannerOverlay {
+    width: 50%;
+    aspect-ratio: 1/1;
+    position: absolute;
+    z-index: 2  ;
+    top: 25%;
+    left: 0;
+    padding: 5%;
+}
+
+    .scannerOverlayBorder {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1.5px solid #4e4e4e;
+    }
+
+    .scannerOverlayInner {
+        width: 100%;
+        height: 100%;
+        background-image: url('scanner-pattern.png');
+        background-size: cover;
+        mask-image: linear-gradient(135deg,
+            rgba(0, 0, 0, 0) 10%,
+            rgba(0, 0, 0, 0) 35%,
+            rgba(0, 0, 0, 1) 50%,
+            rgba(0, 0, 0, 0) 65%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        mask-size: 400% 400%;
+        -webkit-mask-image: linear-gradient(135deg,
+            rgba(0, 0, 0, 0) 10%,
+            rgba(0, 0, 0, 0) 35%,
+            rgba(0, 0, 0, 1) 50%,
+            rgba(0, 0, 0, 0) 65%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        -webkit-mask-size: 400% 400%;
+    }
+
+    .scannerOverlayInner.scan {
+        animation: scan 2s linear forwards;
+    }
+
+    @keyframes scan {
+        0% {
+            mask-position: 100% 100%;
+            -webkit-mask-position: 100% 100%;
+        }
+        100% {
+            mask-position: 0% 0%;
+            -webkit-mask-position: 0% 0%;
+        }
+    }
+
+.scannerItemsWrap {
+    width: 50%;
+    position: absolute;
+    left: 0;
+    top: -60px;
+}
+
+    .scannerItems {
+        display: flex;
+        flex-direction: column;
+        padding: 60px;
+        transition: 0.3s ease;
+    }
+
+    .scannerItem {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        aspect-ratio: 1/1;
+        transition: 0.3s ease;
+        opacity: 0.2;
+        transform: scale(0.6);
+    }
+
+        .scannerIcon {
+            padding: 8%;
+            border: 1px solid #333;
+            border-radius: 6px;
+            margin-bottom: 10%;
+            transition: 0.3s ease;
+        }
+
+        .scannerLabel {
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 5px 9px;
+            font-size: 14px;
+            line-height: 1;
+            transition: 0.3s ease;
+        }
+
+    .scannerItem.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+        .scannerItem.active .scannerIcon {
+            background: #7D50F3;
+            border-color: #7D50F3;
+        }
+
+        .scannerItem.active .scannerLabel {
+            background: rgba(125, 80, 243, 0.32);
+            border: 1px solid rgba(125, 80, 243, 0.24);
+            box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.25);
+        }
+
+.callBubblesWrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 50%;
+}
+
+.callBubbles {
+    flex-shrink: 0;
+}
+
+    .callBubble {
+        margin-top: -4%;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #fff;
+        position: relative;
+    }
+
+    .callBubble:nth-child(1) { transform: translate(-5%, 0); }
+    .callBubble:nth-child(2) { transform: translate(20%, -20%); }
+    .callBubble:nth-child(3) { transform: translate(2%, 0); }
+    .callBubble:nth-child(4) { transform: translate(-20%, 3%); }
+    .callBubble:nth-child(5) { transform: translate(-2%, 30%); }
+    .callBubble:nth-child(6) { transform: translate(18%, -140%); }
+    .callBubble:nth-child(7) { transform: translate(15%, -8%); }
+    .callBubble:nth-child(8) { transform: translate(-12%, -10%); }
+    .callBubble:nth-child(9) { transform: translate(8%, -15%); }
+    .callBubble:nth-child(10) { transform: translate(-18%, 5%); }
+    .callBubble:nth-child(11) { transform: translate(22%, -25%); }
+    .callBubble:nth-child(12) { transform: translate(-15%, 15%); }
+    .callBubble:nth-child(13) { transform: translate(15%, -8%); }
+
+    .callBubbleIcon {
+        color: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        padding: 8%;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)), linear-gradient(180deg, #222 0%, #333 100%);
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0px 1px 16px rgba(133, 77, 252, 0), inset 0px 4px 4px rgba(255, 255, 255, 0.08);
+    }
+
+    .callBubbleLabel {
+        position: absolute;
+        top: 100%;
+        margin-top: -10px;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        height: 26px;
+    }
+
+    .callBubbleLabel > div {
+        display: flex;
+        align-items: center;
+        padding: 0 8px; 
+        border-radius: 20px;
+        font-size: 14px;
+        line-height: 1;
+        backdrop-filter: blur(5px);
+        transition: 0.3s ease;
+        opacity: 0;
+    }
+
+    /* dropped */
+
+        .callBubble.dropped .callBubbleIcon {
+            color: #fff;
+            background: linear-gradient(0deg, rgba(133, 77, 252, 0.08), rgba(133, 77, 252, 0.08)), linear-gradient(180deg, #2D2D2D 0%, #424243 100%);
+            border: 1px solid #5E517B;
+            box-shadow: 0px 1px 16px rgba(133, 77, 252, 0.2), inset 0px 4px 4px rgba(255, 255, 255, 0.08);
+        }
+
+        .callBubbleLabelDropped {
+            background: rgba(125, 80, 243, 0.32);
+            border: 1px solid rgba(125, 80, 243, 0.24);
+            box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.25);
+        }
+
+        .callBubble.dropped .callBubbleLabel > .callBubbleLabelDropped {
+            opacity: 1;
+        }
+
+    /* won */
+
+        .callBubble.won .callBubbleIcon {
+            color: #fff;
+            background: linear-gradient(0deg, rgba(59, 209, 65, 0.08), rgba(59, 209, 65, 0.08)), linear-gradient(180deg, #2D2D2D 0%, #424243 100%);
+            border: 1px solid #4B6E4C;
+            box-shadow: 0px 1px 16px rgba(133, 77, 252, 0.2), inset 0px 4px 4px rgba(255, 255, 255, 0.08);
+        }
+
+        .callBubbleLabelWon {
+            background: rgba(59, 209, 65, 0.32);
+            border: 1px solid rgba(59, 209, 65, 0.24);
+            box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.25);
+        }
+
+        .callBubble.won .callBubbleLabel > .callBubbleLabelWon {
+            opacity: 1;
+        }
+
+.exampleChatWrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+    .exampleChatWrap img {
+        max-width: 60%;
+    }
