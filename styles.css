@@ -9,7 +9,7 @@ body {
     background: #111;
     font-family: system-ui, arial, sans-serif;
     object-fit: contain;
-    max-width: 800px;
+    /* max-width: 800px; */
 }
 
 .animWrap {
