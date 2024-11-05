@@ -18,53 +18,49 @@ function nextScannerItem(){
 }
 
 // Animate call bubbles scrolling upward
-let callBubblesScrollSpeed = 0.5; // pixels per frame
+let callBubblesScrollSpeed = .7; // pixels per frame
 let callBubblesWrap = $('.callBubblesWrap');
 let callBubbles = $('.callBubbles');
+let callBubblesOffset = 0;
 
 function animateCallBubbles() {
-    // Get current scroll position
-    let currentScroll = callBubblesWrap.scrollTop();
     
-    // Get height of one callBubbles element
-    let bubbleHeight = callBubbles.first().outerHeight();
+    // Get height of one callBubbles element  
+    let bubbleHeight = $('.callBubbles:first-of-type').outerHeight();
     
-    // Increment scroll position
-    currentScroll += callBubblesScrollSpeed;
+    // Increment margin position
+    callBubblesOffset += callBubblesScrollSpeed;
     
-    // If we've scrolled past first element, reset to top
-    if(currentScroll >= bubbleHeight) {
-        currentScroll = 0;
+    // If we've moved past first element, reset to top and clone/append
+    if(Math.abs(callBubblesOffset) >= bubbleHeight) {
+        callBubblesOffset = 0;
+        // Clone first set of bubbles and append to end
+        let $clone = $('.callBubbles:first-of-type').clone();
+        $('.callBubblesWrap').append($clone);
+        // Remove first set if we have more than 2 sets
+        if($('.callBubblesWrap').children('.callBubbles').length > 2) {
+            $('.callBubbles:first-of-type').remove();
+        }
     }
     
-    // Apply new scroll position
-    callBubblesWrap.scrollTop(currentScroll);
+    // Apply new margin position to all bubble sets
+    $('.callBubbles').css({'transform': 'translateY(-' + callBubblesOffset + 'px)'});
 
     // Randomly add won/dropped classes
     if(Math.random() < 0.04) {  // probability
-        // Get all visible call bubbles without won/dropped classes
-        let availableBubbles = $('.callBubble').not('.won, .dropped').filter(function() {
-            let rect = this.getBoundingClientRect();
-            let wrapRect = callBubblesWrap[0].getBoundingClientRect();
-            return rect.top >= wrapRect.top && rect.bottom <= wrapRect.bottom;
-        });
+        // Get visible call bubbles without won/dropped classes
+        let $availableBubbles = $('.callBubble:not(.won, .dropped)').filter(':visible');
         
-        if(availableBubbles.length > 0) {
-            // Select one random bubble
-            let randomIndex = Math.floor(Math.random() * availableBubbles.length);
-            let selectedBubble = $(availableBubbles[randomIndex]);
-            
-            // Add either won or dropped class
-            if(Math.random() < 0.55) { // % chance of won
-                selectedBubble.addClass('won');
-            } else {
-                selectedBubble.addClass('dropped');
-            }
+        if($availableBubbles.length > 0) {
+            // Select and update random bubble
+            let $selectedBubble = $availableBubbles.eq(Math.floor(Math.random() * $availableBubbles.length));
+            $selectedBubble.addClass(Math.random() < 0.55 ? 'won' : 'dropped');
         }
     }
     
     // Continue animation
     requestAnimationFrame(animateCallBubbles);
+    
 }
 
 $(document).ready(function(){
