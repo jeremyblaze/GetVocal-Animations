@@ -18,7 +18,7 @@ function nextScannerItem(){
 }
 
 // Animate call bubbles scrolling upward
-let callBubblesScrollSpeed = .7; // pixels per frame
+let callBubblesScrollSpeed = .5; // pixels per frame
 let callBubblesWrap = $('.callBubblesWrap');
 let callBubbles = $('.callBubbles');
 let callBubblesOffset = 0;
